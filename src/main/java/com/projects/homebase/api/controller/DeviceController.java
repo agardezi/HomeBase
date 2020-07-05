@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/device/")
 public class DeviceController {
 
-    @PostMapping(path = "/initailize")
+    @PostMapping(path = "/initialize")
     public ResponseEntity<Object> initializeDevice(@RequestHeader("device_type") String deviceType,
                                                       @RequestBody String newDevice) throws Exception {
 
