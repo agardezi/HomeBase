@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.*;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 @JsonPropertyOrder({
+        "type",
         "id",
         "name",
         "ip_addr",
@@ -14,6 +15,8 @@ import com.fasterxml.jackson.annotation.*;
 })
 public class DeviceDetails {
 
+    @JsonProperty("device_type")
+    private String deviceType;
     @JsonProperty("id")
     private String id;
     @JsonProperty("name")
@@ -21,7 +24,7 @@ public class DeviceDetails {
     @JsonProperty("id_addr")
     private String ipAddr;
     @JsonProperty("action_summary")
-    private ActionSummary actionSummary;
+    private ActionSummary[] actionSummary;
 
     public String getId() {
         return id;
@@ -47,11 +50,19 @@ public class DeviceDetails {
         this.ipAddr = ipAddr;
     }
 
-    public ActionSummary getActionSummary() {
+    public ActionSummary[] getActionSummary() {
         return actionSummary;
     }
 
-    public void setActionSummary(ActionSummary actionSummary) {
+    public void setActionSummary(ActionSummary[] actionSummary) {
         this.actionSummary = actionSummary;
+    }
+
+    public String getDeviceType() {
+        return deviceType;
+    }
+
+    public void setDeviceType(String deviceType) {
+        this.deviceType = deviceType;
     }
 }

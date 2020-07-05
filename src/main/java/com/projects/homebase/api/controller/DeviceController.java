@@ -1,5 +1,10 @@
 package com.projects.homebase.api.controller;
 
+import com.projects.homebase.api.constant.HomeBaseCommonConstant;
+import com.projects.homebase.api.model.DeviceDetails;
+import com.projects.homebase.api.model.dto.RequestDTO;
+import com.projects.homebase.api.registry.Registry;
+import com.projects.homebase.api.workerflow.JsonDeviceDetailsMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +20,19 @@ import org.springframework.web.bind.annotation.*;
 public class DeviceController {
 
     @PostMapping(path = "/initialize")
-    public ResponseEntity<Object> initializeDevice(@RequestHeader("device_type") String deviceType,
+    public ResponseEntity<Object> initializeDevice(@RequestHeader(HomeBaseCommonConstant.DEVICE_TYPE) String deviceType,
                                                       @RequestBody String newDevice) throws Exception {
+
+        RequestDTO requestDTO = new RequestDTO();
+        requestDTO.setAttribute(HomeBaseCommonConstant.DEVICE_TYPE,deviceType);
+        requestDTO.setAttribute(HomeBaseCommonConstant.REQUEST_BODY,newDevice);
+
+        JsonDeviceDetailsMapper jsonDeviceDetailsMapper = new JsonDeviceDetailsMapper();
+        DeviceDetails deviceDetails = jsonDeviceDetailsMapper.process(requestDTO);
+
+        Registry deviceRegistry = Registry.getInstance();
+        deviceRegistry.register(deviceDetails);
+
 
         /**
          *

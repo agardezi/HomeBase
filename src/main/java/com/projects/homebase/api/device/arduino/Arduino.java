@@ -1,4 +1,6 @@
 package com.projects.homebase.api.device.arduino;
 
-public class Arduino {
+import com.projects.homebase.api.model.Device;
+
+public class Arduino extends Device {
 }
