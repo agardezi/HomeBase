@@ -7,4 +7,8 @@ public interface HomeBaseCommonConstant {
 
     String ARDUINO = "arduino";
     String PI = "pi";
+
+    String QUERY = "query";
+    String PATH = "path";
+
 }
