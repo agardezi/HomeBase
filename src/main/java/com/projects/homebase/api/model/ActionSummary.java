@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+/*
+TODO: Add field to incorporate requestMethod ie GET, POST, PUT, DELETE
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 @JsonPropertyOrder({

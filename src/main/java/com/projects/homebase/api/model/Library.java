@@ -27,5 +27,13 @@ public abstract class Library {
         devices.add(device);
 
     }
+    public Device getDevice(String deviceName){
+        for(Device device: devices){
+            if(device.getName().equals(deviceName))
+                return device;
+        }
+        // TODO: Error Handling
+        return null;
+    }
 
 }

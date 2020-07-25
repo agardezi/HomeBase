@@ -42,5 +42,8 @@ public class Registry {
         System.out.println("end of register method");
 
     }
+    public Library getLibrary(String libraryName){
+        return Libraries.get(libraryName);
+    }
 
 }

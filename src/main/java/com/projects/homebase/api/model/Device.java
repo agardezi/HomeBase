@@ -17,13 +17,7 @@ public abstract class Device {
     private List<Action> actions = new ArrayList<Action>();;
 
     public void addAction(ActionSummary actionSummary){
-        /**
-         * TODO: Something along these lines
-         *
-         * action =  ActionFactory.createAction(actionSummary.getType()) // creates a new action corresponding to the type passed in
-         * action.define(actionSummary) //
-         * // actions.add(action)
-         */
+
         Action action = actionFactory.create(actionSummary.getType());
         action.setName(actionSummary.getName());
         action.setEndpoint(actionSummary.getEndpoint());
@@ -43,6 +37,8 @@ public abstract class Device {
         return actions;
     }
 
+
+
     public void setActions(List<Action> actions) {
         this.actions = actions;
     }
@@ -61,5 +57,17 @@ public abstract class Device {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Action getAction(String actionName){
+        try{
+            for(Action action: actions){
+                if(action.getName().equals(actionName))
+                    return action;
+            }
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        return null;
     }
 }
