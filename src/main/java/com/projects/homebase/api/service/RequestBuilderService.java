@@ -8,8 +8,10 @@ import com.projects.homebase.api.model.action.RequestBodyAction;
 import com.projects.homebase.api.util.ParameterStringBuilder;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Map;
 
 /**
@@ -30,15 +32,18 @@ public class RequestBuilderService {
 
 
 
-    public static HttpURLConnection generateQueryRequest(String baseUrl, String endpoint, Object payload) throws UnsupportedEncodingException {
+    public static HttpURLConnection generateQueryRequest(String baseUrl, String endpoint, Object payload) throws IOException {
         System.out.println("Running Generate Request for query action");
 
         String queries = ParameterStringBuilder.getParamsString((Map<String, String>) payload);
-
         System.out.println(baseUrl + endpoint + "?" +  queries);
 
+        URL url = new URL("http://" + baseUrl + endpoint + "?" +  queries);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
 
-        return null;
+
+        return connection;
     }
 
     public static HttpURLConnection generatePathRequest(String baseUrl, String endpoint, Object payload){

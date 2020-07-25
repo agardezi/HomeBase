@@ -25,7 +25,6 @@ public class ExternalRequestBuilder {
             String actionType = action.getClass().getName();
             String endpoint = action.getEndpoint();
 
-
             if (HomeBaseCommonConstant.ActionClassType.QUERY.value.equals(actionType)) {
                 return RequestBuilderService.generateQueryRequest(deviceIpAddr, endpoint, payload);
             }

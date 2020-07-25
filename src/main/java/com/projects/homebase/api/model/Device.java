@@ -23,21 +23,12 @@ public abstract class Device {
         action.setEndpoint(actionSummary.getEndpoint());
         actions.add(action);
 
-
     }
 
-    /**
-     * For invoke request
-     * @param AcionName
-     * @param payload
-     */
-    public void triggerAction(String AcionName, Object payload){}
 
     public List<Action> getActions() {
         return actions;
     }
-
-
 
     public void setActions(List<Action> actions) {
         this.actions = actions;

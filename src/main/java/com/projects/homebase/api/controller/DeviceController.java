@@ -12,6 +12,8 @@ import com.projects.homebase.api.workerflow.JsonInvokeRequestDetailsMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
 /**
@@ -66,6 +68,21 @@ public class DeviceController {
                 deviceRegistry.getLibrary(requestDetails.getDeviceType()).getDevice(requestDetails.getDeviceName()),
                 requestDetails.getActionName(),
                 requestDetails.getPayload());
+
+        /*
+        Following code chunk was found on https://www.baeldung.com/java-http-request
+         */
+        int status = con.getResponseCode();
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer content = new StringBuffer();
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+        }
+        in.close();
+        con.disconnect();
+
 
 
 
