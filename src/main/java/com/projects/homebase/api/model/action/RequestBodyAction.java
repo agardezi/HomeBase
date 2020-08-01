@@ -1,4 +1,4 @@
 package com.projects.homebase.api.model.action;
 
-public class RequestAction {
+public class RequestBodyAction extends Action{
 }

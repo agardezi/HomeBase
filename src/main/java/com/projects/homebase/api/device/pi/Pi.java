@@ -1,4 +1,6 @@
 package com.projects.homebase.api.device.pi;
 
-public class Pi {
+import com.projects.homebase.api.model.Device;
+
+public class Pi extends Device {
 }

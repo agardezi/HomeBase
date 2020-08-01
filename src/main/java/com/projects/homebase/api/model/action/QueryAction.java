@@ -1,4 +1,8 @@
 package com.projects.homebase.api.model.action;
 
-public class QueryAction {
+import com.projects.homebase.api.model.ActionSummary;
+
+public class QueryAction extends Action{
+
+
 }

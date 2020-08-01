@@ -5,13 +5,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+/*
+TODO: Add field to incorporate requestMethod ie GET, POST, PUT, DELETE
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 
 @JsonPropertyOrder({
         "type",
         "name",
         "endpoint",
-        "valueType",
+        "valueTypes",
         "parameter"
 
 })
@@ -23,8 +26,8 @@ public class ActionSummary {
     private String name;
     @JsonProperty("endpoint")
     private String  endpoint;
-    @JsonProperty("valueType")
-    private String valueType;
+    @JsonProperty("valueTypes")
+    private String valueTypes;
     @JsonProperty("parameter")
     private String parameter;
 
@@ -54,11 +57,11 @@ public class ActionSummary {
     }
 
     public String getValueType() {
-        return valueType;
+        return valueTypes;
     }
 
     public void setValueType(String valueType) {
-        this.valueType = valueType;
+        this.valueTypes = valueType;
     }
 
     public String getParameter() {
