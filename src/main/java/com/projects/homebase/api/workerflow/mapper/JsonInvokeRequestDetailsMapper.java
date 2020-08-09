@@ -1,9 +1,9 @@
-package com.projects.homebase.api.workerflow;
+package com.projects.homebase.api.workerflow.mapper;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.projects.homebase.api.constant.HomeBaseCommonConstant;
-import com.projects.homebase.api.model.InvokeRequestDetails;
+import com.projects.homebase.api.model.request.InvokeRequestDetails;
 import com.projects.homebase.api.model.dto.RequestDTO;
 
 

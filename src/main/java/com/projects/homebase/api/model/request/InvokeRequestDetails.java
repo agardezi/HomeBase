@@ -1,4 +1,4 @@
-package com.projects.homebase.api.model;
+package com.projects.homebase.api.model.request;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

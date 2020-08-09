@@ -20,6 +20,7 @@ public abstract class Library {
     public void addDevice(DeviceDetails deviceDetails){
         Device device = deviceFactory.create(deviceDetails.getDeviceType());
         device.setName(deviceDetails.getName());
+        device.setType(deviceDetails.getDeviceType());
         device.setIpAddr(deviceDetails.getIpAddr());
         for(ActionSummary ac: deviceDetails.getActionSummary()){
             device.addAction(ac);
@@ -34,6 +35,9 @@ public abstract class Library {
         }
         // TODO: Error Handling
         return null;
+    }
+    public List<Device> getAllDevices(){
+        return devices;
     }
 
 }

@@ -1,7 +1,7 @@
 package com.projects.homebase.api.util;
 
-/*
-Credit: https://www.baeldung.com/java-http-request => 4. Adding Request Parameters
+/**
+ * Credit: https://www.baeldung.com/java-http-request => 4. Adding Request Parameters
  */
 
 import java.io.UnsupportedEncodingException;
