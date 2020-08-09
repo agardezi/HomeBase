@@ -45,5 +45,11 @@ public class Registry {
     public Library getLibrary(String libraryName){
         return Libraries.get(libraryName);
     }
+    public Map<String,Library> getLibraries(){
+        return Libraries;
+    }
+
+
+
 
 }

@@ -1,4 +1,4 @@
-package com.projects.homebase.api.workerflow;
+package com.projects.homebase.api.workerflow.mapper;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,6 +15,7 @@ public class JsonDeviceDetailsMapper {
     public DeviceDetails process(RequestDTO requestDTO) throws JsonProcessingException {
         DeviceDetails deviceDetails = null;
         try{
+            String temp = requestDTO.getAttribute(HomeBaseCommonConstant.REQUEST_BODY).toString();
             ObjectMapper mapper = new ObjectMapper();
             deviceDetails = mapper.readValue(requestDTO.getAttribute(HomeBaseCommonConstant.REQUEST_BODY).toString(),DeviceDetails.class);
         }
