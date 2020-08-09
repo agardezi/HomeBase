@@ -27,7 +27,7 @@ public class ActionSummary {
     @JsonProperty("endpoint")
     private String  endpoint;
     @JsonProperty("valueTypes")
-    private String valueTypes;
+    private String[] valueTypes;
     @JsonProperty("parameter")
     private String parameter;
 
@@ -56,11 +56,11 @@ public class ActionSummary {
         this.endpoint = endpoint;
     }
 
-    public String getValueType() {
+    public String[] getValueType() {
         return valueTypes;
     }
 
-    public void setValueType(String valueType) {
+    public void setValueType(String[] valueType) {
         this.valueTypes = valueType;
     }
 

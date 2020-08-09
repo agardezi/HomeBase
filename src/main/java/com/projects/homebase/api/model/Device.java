@@ -4,14 +4,16 @@ import com.projects.homebase.api.factory.ActionFactory;
 import com.projects.homebase.api.factory.DeviceFactory;
 import com.projects.homebase.api.model.action.Action;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Component("device")
 public abstract class Device {
 
     private ActionFactory actionFactory = new ActionFactory();
+    private String type;
     private String name;
     private String ipAddr;
     private List<Action> actions = new ArrayList<Action>();;
@@ -21,6 +23,8 @@ public abstract class Device {
         Action action = actionFactory.create(actionSummary.getType());
         action.setName(actionSummary.getName());
         action.setEndpoint(actionSummary.getEndpoint());
+        action.setValueTypes(actionSummary.getValueType());
+        action.setParameter(actionSummary.getParameter());
         actions.add(action);
 
     }
@@ -60,5 +64,18 @@ public abstract class Device {
             System.out.println(e);
         }
         return null;
+    }
+    public String toString(){
+        String deviceString = "";
+
+        return deviceString;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
