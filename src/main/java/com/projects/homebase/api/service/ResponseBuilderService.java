@@ -33,9 +33,7 @@ public class ResponseBuilderService {
        devices = new ArrayList<>();
        Gson gson = new Gson();
        for(Device device: deviceRegistry.getLibrary(HomeBaseCommonConstant.ARDUINO).getAllDevices()){
-           String dev = gson.toJson(device);
            GetDevicesResponse singleDevice = jsonMapper.process(gson.toJson(device));
-
            devices.add(singleDevice);
         }
     }

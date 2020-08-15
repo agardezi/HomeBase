@@ -1,5 +1,6 @@
 package com.projects.homebase.api.controller;
 
+import com.projects.homebase.HomebaseApplication;
 import com.projects.homebase.api.constant.HomeBaseCommonConstant;
 import com.projects.homebase.api.model.Device;
 import com.projects.homebase.api.model.DeviceDetails;
@@ -10,6 +11,8 @@ import com.projects.homebase.api.service.ResponseBuilderService;
 import com.projects.homebase.api.workerflow.ExternalRequestBuilder;
 import com.projects.homebase.api.workerflow.mapper.JsonDeviceDetailsMapper;
 import com.projects.homebase.api.workerflow.mapper.JsonInvokeRequestDetailsMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +34,8 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/device")
 public class DeviceController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DeviceController.class);
     Registry deviceRegistry = Registry.getInstance();
 
     @Autowired
@@ -41,7 +46,8 @@ public class DeviceController {
     public ResponseEntity<Object> initializeDevice(@RequestHeader(HomeBaseCommonConstant.DEVICE_TYPE) String deviceType,
                                                       @RequestBody String newDevice) throws Exception {
 
-        System.out.println(newDevice);
+        LOGGER.info("Inside /initialize request");
+        LOGGER.info("initialize payload = " + newDevice);
         RequestDTO requestDTO = new RequestDTO();
         requestDTO.setAttribute(HomeBaseCommonConstant.DEVICE_TYPE,deviceType);
         requestDTO.setAttribute(HomeBaseCommonConstant.REQUEST_BODY,newDevice);
@@ -57,6 +63,7 @@ public class DeviceController {
 
 
         // TODO: Update return response entity with message corresponding to event
+        LOGGER.info("Completed /initialize request");
         ResponseEntity<Object> responseEntity = ResponseEntity.ok().body("Device Successfully Initialized");
         return responseEntity;
     }
@@ -64,6 +71,9 @@ public class DeviceController {
     @PostMapping(path = "/invoke")
     public ResponseEntity<Object> invoke(@RequestHeader((HomeBaseCommonConstant.DEVICE_TYPE)) String deviceType,
                                                    @RequestBody String invokeRequest) throws Exception {
+
+        LOGGER.info("Inside /invoke request");
+        LOGGER.info("invoke payload = " + invokeRequest);
         RequestDTO requestDTO = new RequestDTO();
         requestDTO.setAttribute(HomeBaseCommonConstant.DEVICE_TYPE,deviceType);
         requestDTO.setAttribute(HomeBaseCommonConstant.REQUEST_BODY,invokeRequest);
@@ -106,13 +116,7 @@ public class DeviceController {
          * - return reponse from server to client
          */
 
-
-
-
-        /**
-         *
-         */
-
+        LOGGER.info("Completed /invoke request");
 
         // TODO: Update return response that is received from respective device
         ResponseEntity<Object> responseEntity = ResponseEntity.ok().body("PLACEHOLDER: It probably worked");
@@ -121,24 +125,15 @@ public class DeviceController {
 
     @GetMapping(path = "/getDevices")
     public ResponseEntity<Object> getAllDevices() throws Exception {
+        LOGGER.info("Inside /getDevices request");
 
-
-        /**
-         * Get All Libraries
-         * For Each Library:
-         *  - process Device and add it to DeviceRegistry object
-         */
         responseBuilderService.processDevice();
 
         List<Device> registeredDevices = new ArrayList<>();
         registeredDevices.addAll(deviceRegistry.getLibrary(HomeBaseCommonConstant.ARDUINO).getAllDevices());
         registeredDevices.addAll(deviceRegistry.getLibrary(HomeBaseCommonConstant.PI).getAllDevices());
-        System.out.println(registeredDevices.toString());
+        LOGGER.info("Sending following object as response: "+ responseBuilderService.getDevices().toString());
 
-
-
-//        RegisteredDevices registeredDevices = new RegisteredDevices();
-        // TODO: Parse library and construct JSON with all devices and send as response
         ResponseEntity<Object> responseEntity = ResponseEntity.ok().body(responseBuilderService.getDevices());
         return responseEntity;
     }

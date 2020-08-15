@@ -1,10 +1,16 @@
 package com.projects.homebase;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import org.slf4j.Logger;
+
 @SpringBootApplication
 public class HomebaseApplication {
+	/**
+	 * Reference: Logging from => https://www.tutorialspoint.com/spring_boot/spring_boot_logging.htm
+	 */
 
 	/**
 	 * TODO: Add Robust Logging that includes the following:
@@ -48,8 +54,10 @@ public class HomebaseApplication {
 	 * @param args
 	 */
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(HomebaseApplication.class);
 	public static void main(String[] args) {
 		SpringApplication.run(HomebaseApplication.class, args);
+		LOGGER.info("Running HomeApplication Main");
 	}
 
 }
