@@ -15,7 +15,6 @@ public class JsonGetDevicesResponseMapper {
     public GetDevicesResponse process(String device) throws JsonProcessingException {
         GetDevicesResponse getDevicesResponse = null;
         try{
-            // Needed to add config so that mapping doesnt fail if unrecognized class
             ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             getDevicesResponse = mapper.readValue(device, GetDevicesResponse.class);
         }

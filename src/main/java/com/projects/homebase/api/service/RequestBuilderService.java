@@ -1,11 +1,14 @@
 package com.projects.homebase.api.service;
 
+import com.projects.homebase.api.controller.DeviceController;
 import com.projects.homebase.api.model.Device;
 import com.projects.homebase.api.model.action.Action;
 import com.projects.homebase.api.model.action.PathAction;
 import com.projects.homebase.api.model.action.QueryAction;
 import com.projects.homebase.api.model.action.RequestBodyAction;
 import com.projects.homebase.api.util.ParameterStringBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -20,16 +23,7 @@ import java.util.Map;
 
 @Component("requestBuilderService")
 public class RequestBuilderService {
-
-    public void print(){
-        System.out.println("Successfully AutoWired");
-    }
-    /**
-     * Create http request
-     * return request
-
-     */
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(DeviceController.class);
 
 
     public static HttpURLConnection generateQueryRequest(String baseUrl, String endpoint, Object payload) throws IOException {

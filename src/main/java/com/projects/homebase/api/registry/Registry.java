@@ -1,10 +1,13 @@
 package com.projects.homebase.api.registry;
 
+import com.projects.homebase.HomebaseApplication;
 import com.projects.homebase.api.constant.HomeBaseCommonConstant;
 import com.projects.homebase.api.device.arduino.ArduinoLibrary;
 import com.projects.homebase.api.device.pi.PiLibrary;
 import com.projects.homebase.api.model.DeviceDetails;
 import com.projects.homebase.api.model.Library;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -15,6 +18,8 @@ import java.util.Map;
  */
 @Component
 public class Registry {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Registry.class);
 
 
 
@@ -38,8 +43,9 @@ public class Registry {
 
     // get's library based on device_type value, adds device to corresponding library
     public void register(DeviceDetails deviceDetails){
+        LOGGER.info("Inside Registry.register method");
         Libraries.get(deviceDetails.getDeviceType()).addDevice(deviceDetails);
-        System.out.println("end of register method");
+        LOGGER.info("End of Registry.register method");
 
     }
     public Library getLibrary(String libraryName){
